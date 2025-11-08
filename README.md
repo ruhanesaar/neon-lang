@@ -1,4 +1,4 @@
 # neon-lang
-Programming language written in RUST
+A (Stack-Based) Programming Language Written in Rust.
 
-lets change something
+

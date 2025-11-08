@@ -1,2 +1,5 @@
-fn main() { println!("Hello, world!");
+use crate::Stack;
+
+fn main() {
+    let stack = Stack::new();
 }
