@@ -1,5 +1,5 @@
-use crate::Stack;
+use crate::Buffer;
 
 fn main() {
-    let stack = Stack::new();
+    let stack = Buffer::new();
 }
