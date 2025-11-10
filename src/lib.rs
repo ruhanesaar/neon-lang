@@ -1,7 +1,7 @@
-pub struct Buffer(pub &[u8; 256]);
+pub struct Buffer<'a>(pub &'a [u8; 256]);
 impl Buffer {
     pub fn new() -> Self {
-        Stack(&[0; 256])
+        Self(&[0; 256])
     }
     pub fn set(&mut self, index: u8, value: u8) {
         self.0[index] = value;
