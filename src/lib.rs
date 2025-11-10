@@ -1,15 +1,34 @@
-struct Buffer(&[u8; 256]);
+pub struct Buffer(pub &[u8; 256]);
 impl Buffer {
-    fn new() -> Self {
+    pub fn new() -> Self {
         Stack(&[0; 256])
     }
-    fn set(&mut self, index: u8, value: u8) {
+    pub fn set(&mut self, index: u8, value: u8) {
         self.0[index] = value;
     }
-    fn get(&self, index: u8) -> u8 {
+    pub fn get(&self, index: u8) -> u8 {
         self.0[index]
     }
-    fn clear(&mut self, index: u8, end: u8) {
+    pub fn clear(&mut self, index: u8, end: u8) {
         self.0[index..end].fill(0u8);
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn set_to_buffer_works() {
+        let mut buffer = Buffer::new();
+        buffer.set(0, 42);
+        assert_eq!(buffer.get(0), 42);
+    }
+
+    #[test]
+    fn clear_buffer_works() {
+        let mut buffer = Buffer::new();
+        buffer.clear(0, 10);
+        assert_eq!(buffer.get(0), 0);
+        assert_eq!(buffer.get(9), 0);
     }
 }
