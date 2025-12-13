@@ -48,10 +48,11 @@ use crate::token::*;
 pub fn lex(code: &str) -> Vec<Token> {
     let mut tokens = Vec::new();
     for line in code.lines() {
+    	if line.is_empty() { continue; }
         let split_str = line.split_whitespace().collect::<Vec<&str>>();
         match split_str[0] {
-            "GET" => Token::Get(Position(split_str[1].parse::<i32>().unwrap() as u8)),
-            "SET" => Token::Set(Position(split_str[1].parse::<i32>().unwrap() as u8), Value(split_str[2].parse::<i32>().unwrap() as u8)),
+            "GET" => tokens.push(Token::Get(Position(split_str[1].parse::<i32>().unwrap() as u8))),
+            "SET" => tokens.push(Token::Set(Position(split_str[1].parse::<i32>().unwrap() as u8), Value(split_str[2].parse::<i32>().unwrap() as u8))),
             _ => panic!("Unknown Operator")
         };
         if let Some(_comment) = split_str.iter().position(|x| x.starts_with("//")) {
