@@ -1,32 +1,11 @@
-/// A Tuple Struct `Buffer`
-/// This is (Basically) Equivalent to `[u8; 256]` 
 pub struct Buffer(pub [u8; 256]);
 impl Buffer {
-    /// Creates a New `Buffer` with Value `Buffer([0u8; 256])`
     pub fn new() -> Self {
         Self([0; 256])
     }
-    /// Changes the value in the given index
-    /// # Examples
-    /// ```
-    /// use neon_lang::Buffer;
-    /// let mut buf = Buffer::new();
-    /// buf.set(0, 64);
-    /// // The zeroeth value is now 64. 
-    /// println!("{}", (buf.0)[0]); // 64
-    /// ```
     pub fn set(&mut self, index: u8, value: u8) {
         (self.0)[index as usize] = value;
     }
-    /// Gets the value in the index
-    /// # Examples
-    /// ```
-    /// use neon_lang::Buffer;
-    /// let mut buf = Buffer::new();
-    /// (buf.0)[0] = 64;
-    /// println!("{}", buf.get(0)); // 64
-    /// // Note: This is the same as the example of Buffer::set()
-    /// ```
     pub fn get(&self, index: u8) -> u8 {
         (self.0)[index as usize]
     }
@@ -48,5 +27,48 @@ mod tests {
         let mut buffer = Buffer::new();
         (buffer.0)[0] = 42;
         assert_eq!(buffer.get(0), 42);
+    }
+}
+
+pub mod token {
+    #[derive(Clone, PartialEq, Eq, Debug)]
+    pub struct Position(pub u8);
+    #[derive(Clone, PartialEq, Eq, Debug)]
+    pub struct Value(pub u8);
+
+    #[derive(Clone, PartialEq, Eq, Debug)]
+    pub enum Token {
+        Set(Position, Value),
+        Get(Position),
+        EOF,
+    }
+}
+
+use crate::token::*;
+pub fn lex(code: &str) -> Vec<Token> {
+    let mut tokens = Vec::new();
+    for line in code.lines() {
+        let split_str = line.split_whitespace().collect::<Vec<&str>>();
+        match split_str[0] {
+            "GET" => Token::Get(Position(split_str[1].parse::<i32>().unwrap() as u8)),
+            "SET" => Token::Set(Position(split_str[1].parse::<i32>().unwrap() as u8), Value(split_str[2].parse::<i32>().unwrap() as u8)),
+            _ => panic!("Unknown Operator")
+        };
+        if let Some(_comment) = split_str.iter().position(|x| x.starts_with("//")) {
+            continue;
+        }
+    }
+    tokens.push(Token::EOF);
+    tokens
+}
+
+pub fn interpret(code: Vec<Token>) {
+	let mut buf = Buffer::new();
+    for line in code {
+        match &line {
+            Token::Set(Position(pos), Value(val)) => buf.set(*pos, *val),
+            Token::Get(Position(pos)) => println!("{}", buf.get(*pos)),
+            Token::EOF => break
+        };
     }
 }
