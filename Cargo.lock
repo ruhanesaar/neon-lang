@@ -3,14 +3,5 @@
 version = 4
 
 [[package]]
-name = "main"
-version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "43fd9f6cab84206b40689c3dae0f966acede03993c904294a7b9ab3c19671fe2"
-
-[[package]]
 name = "neon_lang"
-version = "0.1.0"
-dependencies = [
- "main",
-]
+version = "1.0.0"

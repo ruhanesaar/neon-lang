@@ -1,0 +1,7 @@
+// A test Neon file
+
+SET 20 19
+GET 20 // 19
+SET 64 21
+GET 64 // 21
+GET 12 // 0
