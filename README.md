@@ -1,6 +1,8 @@
 # neon-lang
 A Programming Language Written in Rust.
 
+Note: This is a work in progress.
+
 # Tutorial
 You have 256 changeable 8-bit values, which can be accessed and modified using the programming language.
 
@@ -28,3 +30,22 @@ Comments are denoted by the double-forward-slash (//).
 ```text
 // This is a comment.
 ```
+
+## Example Program
+```
+// ./main
+// A test Neon file
+
+SET 20 19
+GET 20 // 19
+SET 64 21
+GET 64 // 21
+GET 12 // 0
+```
+
+# Installation
+Prerequisites: Rust, Git
+Steps:
+1. `git clone https://github.com/ruhanesaar/neon-lang`
+2. `cd neon-lang`
+3. `cargo run --release --bin neon ./main`
