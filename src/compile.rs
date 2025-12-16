@@ -26,3 +26,22 @@ pub fn write_bin(bin: &[u8], file: &mut std::fs::File) -> std::io::Result<()> {
     file.write_all(bin)?;
     Ok(())
 }
+
+pub fn deserialize(bin: &[u8]) -> Vec<Token> {
+    let mut tokens = Vec::new();
+    let chunks = bin.chunks_exact(3);
+    let bin_tokens = chunks.map(|chunk| {
+        <[u8; 3]>::try_from(chunk).unwrap()
+    });
+
+    for token in bin_tokens {
+        match token {
+            [0, a, b] => tokens.push(Token::Set(Position(u8::from_le_bytes([a])), Value(u8::from_le_bytes([b])))),
+            [1, a, 0] => tokens.push(Token::Get(Position(u8::from_le_bytes([a])))),
+            _ => panic!("Invalid token"),
+        }
+    }
+    tokens.push(Token::EOF);
+
+    tokens
+}

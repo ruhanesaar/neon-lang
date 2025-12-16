@@ -12,3 +12,7 @@ path = "src/neon.rs"
 [[bin]]
 name = "neocomp"
 path = "src/neocomp.rs"
+
+[[bin]]
+name = "neovm"
+path = "src/neovm.rs"

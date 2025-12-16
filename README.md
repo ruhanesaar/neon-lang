@@ -64,7 +64,7 @@ Steps:
 3. `cargo run --release -- neocomp <neon_file> <output_file>`
 
 ## How it works
-You wont usually need to modify or see the compiled binary.
+You wont usually need to modify or see the compiled binary (but if you want to, you can use a hex editor like [Hexed.it](https://hexed.it/)).
 
 The compiler reads the Neon file line by line, and converts it into a binary format.
 
@@ -86,3 +86,11 @@ And so on.
 # Virtual Machine
 The virtual machine is written in Rust (neovm).
 It takes a binary file (bytecode) as input, and executes it like it is a normal Neon program.
+
+## How to run
+Steps:
+1. `git clone https://github.com/ruhanesaar/neon-lang`
+2. `cd neon-lang`
+3. `cargo run --release -- neovm <binary_file>`
+
+You can test this on the ./main.bin file.
