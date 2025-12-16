@@ -52,6 +52,12 @@ Steps:
 2. `cd neon-lang`
 3. `cargo run --release -- --bin neon ./<neon_file>`
 
+Or (without installing rust):
+
+1. `git clone https://github.com/ruhanesaar/neon-lang`
+2. `cd neon-lang`
+3. `./releases/<your_neon_binary> <neon_file> <output_file>`
+
 # Compiler
 The compiler is also written in Rust (neocomp).
 It takes a Neon file as input, and outputs a binary file (bytecode).
@@ -62,6 +68,12 @@ Steps:
 1. `git clone https://github.com/ruhanesaar/neon-lang`
 2. `cd neon-lang`
 3. `cargo run --release -- neocomp <neon_file> <output_file>`
+
+Or (without installing rust):
+
+1. `git clone https://github.com/ruhanesaar/neon-lang`
+2. `cd neon-lang`
+3. `./releases/<your_neoocomp_binary> <neon_file>`
 
 ## How it works
 You wont usually need to modify or see the compiled binary (but if you want to, you can use a hex editor like [Hexed.it](https://hexed.it/)).
@@ -93,4 +105,9 @@ Steps:
 2. `cd neon-lang`
 3. `cargo run --release -- neovm <binary_file>`
 
+Or (without installing rust):
+
+1. `git clone https://github.com/ruhanesaar/neon-lang`
+2. `cd neon-lang`
+3. `./releases/<your_neoovm_binary> <binary_file>`
 You can test this on the ./main.bin file.
