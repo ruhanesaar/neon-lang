@@ -8,3 +8,7 @@ edition = "2024"
 [[bin]]
 name = "neon"
 path = "src/neon.rs"
+
+[[bin]]
+name = "neocomp"
+path = "src/neocomp.rs"
