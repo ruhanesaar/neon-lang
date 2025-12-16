@@ -76,7 +76,7 @@ If the procedure takes no arguments, the last 2 bytes are 0.
 If the procedure takes 1 argument, the last byte are 0.
 And so on.
 
-#### Prcture identifiers
+#### Procedure identifiers
 | Procedure | Identifier |
 | --------- | ---------- |
 | GET       | 0x01       |
